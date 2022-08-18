@@ -1,5 +1,7 @@
 package com.bridgelabz.gamblingsimulatorprogram;
 
+import java.util.Scanner;
+
 public class GamblingSimulator {
     static int stake = 100;
     final static int dailyBet = 1;
@@ -15,25 +17,38 @@ public class GamblingSimulator {
                 System.out.println("Winner");
                 stakeWin = stake + 50;
                 stake = stakeWin;
-                System.out.println("Day " +i+ " Stake after Win : $" +stakeWin);
+                System.out.println("Day " + i + " Stake after Win : $" + stakeWin);
                 wins++;
                 stakeWin++;
             } else {
                 System.out.println("loser");
                 stakeLose = stake - 50;
                 stake = stakeLose;
-                System.out.println("Day " +i+ " Stake after Losings : $" +stake);
+                System.out.println("Day " + i + " Stake after Losings : $" + stake);
                 lose++;
                 stakeLose++;
             }
         }
-
-        System.out.println("Stake left after 20 days: $" + (stakeWin + stakeLose));
+        System.out.println("Stake left after 20 days: $" + (stakeWin - stakeLose));
         System.out.println("Total wins in month : " +wins+ " Stake won in month : $" +stakeWin);
         System.out.println("Total loses in month : " +lose+ " Stake lose in month $: " +stakeLose);
+    }
+    static void askUser(){
+        System.out.println("press 1 If you like to play again\n and press 2 if you would like to stop gambling");
+        Scanner scan = new Scanner(System.in);
+        int number = scan.nextInt();
+        switch (number){
+            case 1:
+                gambler();
+                break;
+            case 2:
+                System.out.println("Exit");
+        }
     }
     public static void main(String[] args) {
         System.out.println("Welcome to Gambling Simulator Program");
         gambler();
+        askUser();
+
     }
 }
